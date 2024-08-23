@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 처리 </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 키 입력에 관련된 이벤트
+      keydown, keyup, input(함수가 없으니 on으로 적는다) 
+      keydown, keyup 은 출력한 다음 이벤트 처리
+       * 글자 처리는 보통 keyup
+       * input 은 이베트 처리한 다음 결과를 출력-->
+      <input type="text" id="nickname">
+    <script>
+        $('#nickname').on('input',function(){
+            pattern= /[^A-za-z]/g;
+            const value = $('#nickname').val();
+            $('#nickname').val(value.replace(pattern,''));
+        })
+    </script>
+</body>
+</html>

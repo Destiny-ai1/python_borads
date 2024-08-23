@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/main.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const message = '{{message}}';
+    if(message!='')
+      alert(message)
+  </script>
+  <title>목록</title>
+  <style>
+    #content{
+        min-height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>게시판</header>
+    <nav>
+      <a type="button" class="btn btn-success" href="/">HOME</a>
+      <a type="button" class="btn btn-primary" href="/write">글쓰기</a>
+    </nav>
+    <main>
+      <aside>왼쪽</aside>
+            <section>
+                <div>글번호:{{board.bno}}</div>
+                <div>닉네임:{{board.nickname}}</div>
+                <div>제목:{{board.title}}</div>
+                <div id="content">내용:{{board.content}}</div>
+                <div>현재시간:{{board.writetime}}</div>
+                <a type="button" href="/update?bno={{board.bno}}" class="btn btn-primary">변경</a>
+      </section>
+      <aside>오른쪽</aside>
+    </main>
+    <footer>
+      2024 ICIA &copy;copyright 
+    </footer>
+  </div>  
+</body>
+</html>

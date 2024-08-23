@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규식</title>
+    <script>
+        // '가' 라는 글자가 있다는 패턴
+        //  패턴.test('???'): 문자열이 패턴에 만족한가?
+        const pattern=/가/;
+        console.log(pattern.test('가나다다'));
+        console.log(pattern.test('마바사'));
+
+        //  대문자하나 일때
+        // 지정해둔 범위 내에 하나라도 속하면 True
+        const pattern2=/[A-Z]/;
+        console.log(pattern2.test('abcd'));
+        console.log(pattern2.test('Abcd'));
+
+        // 영문자 1글자
+        const pattern3=/[A-za-z]/;
+        console.log(pattern3.test('대한민국'));
+        console.log(pattern3.test('대한민a'));
+
+        // 치환하기
+        console.log('대한민a'.replace(pattern3,''));
+        
+        // 영문자가 아니면 지워라
+        // 대문자, 소문자가 아니라면 : ^ 표시
+        const pattern4 =/[^A-za-z]/g;
+        console.log('대A한B민C국d'.replace(pattern4,''));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
