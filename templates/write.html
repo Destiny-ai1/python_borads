@@ -17,9 +17,12 @@
       const $nickname = $('#nickname');
       const $nickname_message = $('#nickname_message');
       const $title=$('#title');
-      const $title_message = $('#title_message')
+      const $title_message = $('#title_message');
       const $content= $('#content');
-    
+      const $password= $('#password');
+      const $password_message = $('#password-message');
+
+
       function nicknameCheck(){
         const value = $nickname.val();
         if(value==''){
@@ -57,18 +60,39 @@
       } 
     }
 
+    function passwordCheck(){
+        const value = $password.val();
+        if(value==''){
+        $password_message.removeClass('hide-error').addClass('show-error').text('password을 입력하세요');
+        return false;
+      } else if (value.length>20){
+        $password_message.removeClass('hide-error').addClass('show-error').text('password는 10~20 글자사이입니다.');
+        return false;
+      } 
+        else{
+        $password_message.removeClass('show-error').addClass('hide-error');
+        return true;
+      }
+    }
+
     //function을 대신해서 =>(화살표 함수를 사용가능)
     // 단 화살표 함수는 this를 가질수 없다.
     // 즉 화살표 함수는 메소드가 될수 없다. 
 
     $nickname.blur(function(){
       nicknameCheck();
-    })
+    })                    /* $nickname.blur(()=>nicknamecheck()); */
 
     $title.blur(function(){
       titleCheck();
     })
 
+    $password.blur(function(){
+      passwordCheck();
+    })
+
+    // 닉네임은 영문자 숫자만 입력가능하게하되
+    // 다른값이 오면 지운다
     $nickname.on('input',function(){
       const pattern = /[^A-Za-z-0-9]/g;
       const value=  $(this).val();
@@ -76,11 +100,17 @@
     })
 
     $('#write').click(function(){
-      if(nicknameCheck()==false || titleCheck()==false || contentCheck()==false)
+      if(nicknameCheck()==false || titleCheck()==false || contentCheck()==false || passwordCheck()==false)
       return;
       $('#write-form').submit();
     })
   });
+
+    $password.on('input',function(){
+      const pattern = /[^A-Za-z-0-9]/g;               /* ^ 표시는 영소문자or대문자가 아니라면*/                                   
+      const value=  $(this).val();
+      $(this).val(value.replace(pattern,''));
+    })
 
       // focusout, blur 둘다 사용가능
     // $nickname.blur(function(e){
@@ -136,6 +166,11 @@
           <div class="mb-3 mt-3">
             <label for="content">내용:</label>
             <textarea class="form-control" rows="5" id="content" name="content" maxlength="500"></textarea>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="password" class="form-label">삭제비밀번호:</label>
+            <input type="password" class="form-control" id="password" name="password">
+            <div id="password_message" class="hide-error"></div>
           </div>
           <div class="d-grid mb-3 mt-3">
             <button type="button" class="btn btn-outline-primary btn-block" id="write">작성</button>

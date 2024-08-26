@@ -9,8 +9,8 @@ def list_reset(size=int)->tuple:
     datetime.now()
     for i in range ( 1, size+1):
         new_boards={'bno':i, 'title':f'{i}번글', 'content': f'{i}번글입니다', 'nickname': 'NYS', 
-            'writetime':datetime.now().strftime('%Y-%m-%d %H:%M:%S')}                         # ('%Y년-%m월-%d %H:%M:%S') xxxx년-00월-00일 / xx시xx분xx초
-        boards.insert(0,new_boards)                                                           #새로운 보드를 제일 앞에 추가하는 방법 (역순으로 )
+            'writetime':datetime.now().strftime('%Y-%m-%d %H:%M:%S') ,'password':'1234'}                      # ('%Y년-%m월-%d %H:%M:%S') xxxx년-00월-00일 / xx시xx분xx초
+        boards.insert(0,new_boards)                                                                           #새로운 보드를 제일 앞에 추가하는 방법 (역순으로 )
     return(boards,size+1)
 
 
